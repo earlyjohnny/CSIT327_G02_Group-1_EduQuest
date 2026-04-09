@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #f5f4f0;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #1a1a2e;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-family: 'DM Serif Display', serif;
+    color: #ffffff;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-back {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 16px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.btn-back:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-logout {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.welcome-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 48px 40px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    max-width: 480px;
+    width: 100%;
+}
+
+.icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.welcome-card h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+}
+
+.welcome-card p {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.6;
+}
