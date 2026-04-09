@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Announcements</h1>
+
+{% for a in announcements %}
+    <h3>{{ a.headline }}</h3>
+    <p>{{ a.content }}</p>
+    <small>{{ a.date_posted }}</small>
+    <hr>
+{% empty %}
+    <p>No announcements yet.</p>
+{% endfor %}
+
+    <a href="/">Back to Home</a>
+</body>
+</html>
