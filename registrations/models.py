@@ -8,8 +8,8 @@ class Registration(models.Model):
         on_delete=models.CASCADE,
         related_name="registrations",
     )
-    # I comment out ni if humana ug himo ang events nga models
-    #event = models.ForeignKey("events.Event", on_delete=models.CASCADE, related_name="registrations",)
+
+    event = models.ForeignKey("events.Event", on_delete=models.CASCADE, related_name="registrations",)
     timestamp = models.DateTimeField(auto_now_add=True)
     confirmation_code = models.CharField(max_length=100, unique=True)
 
@@ -27,10 +27,9 @@ class Attendance(models.Model):
         on_delete=models.CASCADE,
         related_name="attendances",
     )
-    # I comment out ni if humana ug himo ang events nga models
-    #event = models.ForeignKey("events.Event", on_delete=models.CASCADE, related_name="attendances",)
-    # I comment out ni if humana ug himo ang organizations nga models
-    #org = models.ForeignKey("organizations.Organization", on_delete=models.CASCADE, related_name="attendances",)
+
+    event = models.ForeignKey("events.Event", on_delete=models.CASCADE, related_name="attendances",)
+    org = models.ForeignKey("organizations.Organization", on_delete=models.CASCADE, related_name="attendances",)
     time_in = models.DateTimeField(null=True, blank=True)
     time_out = models.DateTimeField(null=True, blank=True)
     is_excused = models.BooleanField(default=False)

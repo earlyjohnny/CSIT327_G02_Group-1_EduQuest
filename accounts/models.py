@@ -62,8 +62,8 @@ class Profile(models.Model):
 
 class Role(models.Model):
     role_id = models.AutoField(primary_key=True)
-    # I comment out ni if humana ug himo ang organizations nga models
-    #org = models.ForeignKey("organizations.Organization", on_delete=models.CASCADE, related_name="roles",)
+
+    org = models.ForeignKey("organizations.Organization", on_delete=models.CASCADE, related_name="roles",)
     role_title = models.CharField(max_length=100)
     access_level = models.IntegerField(default=1)
     is_officer = models.BooleanField(default=False)
@@ -89,8 +89,8 @@ class Membership(models.Model):
         to_field="student_num",
         related_name="memberships",
     )
-    # I comment out ni if humana ug himo ang organizations nga models
-    #org = models.ForeignKey("organizations.Organization", on_delete=models.CASCADE, related_name="memberships",)
+
+    org = models.ForeignKey("organizations.Organization", on_delete=models.CASCADE, related_name="memberships",)
     role = models.ForeignKey(
         Role,
         on_delete=models.SET_NULL,
@@ -105,8 +105,8 @@ class Membership(models.Model):
     class Meta:
         db_table = "membership"
         # A student cannot have more than one active membership per organization
-        # I comment out ni if humana ug himo ang organizations nga models
-        # unique_together = [("student_num", "org")]
+
+        unique_together = [("student_num", "org")]
 
     def __str__(self):
         return f"{self.student_num} - {self.org} ({self.status})"

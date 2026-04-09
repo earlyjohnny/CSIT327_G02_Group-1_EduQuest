@@ -17,15 +17,19 @@ class Event(models.Model):
     # Link to organizer (replace with actual model if you have an Organizer model)
     # Example: settings.AUTH_USER_MODEL if it's a user
     org = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        'organizations.Organization',
         on_delete=models.CASCADE,
-        related_name='events'
+        related_name='events',
+        null=True,
+        blank=True
     )
 
     venue = models.ForeignKey(
         Venue,
         on_delete=models.CASCADE,
-        related_name='events'
+        related_name='events',
+        null=True,
+        blank=True
     )
 
     title = models.CharField(max_length=255)
