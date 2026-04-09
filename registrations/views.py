@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 
 class RegistrationsView(View):
-    template_name = 'registrations_index.html'
+    template_name = 'registrations.html'
 
     def get(self, request):
         if not request.user.is_authenticated:
