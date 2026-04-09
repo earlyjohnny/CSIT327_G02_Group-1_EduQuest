@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Announcements</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Announcements</h1>
 
 {% for a in announcements %}
-    <h3>{{ a.headline }}</h3>
-    <p>{{ a.content }}</p>
-    <small>{{ a.date_posted }}</small>
-    <hr>
+    <div class="card">
+        <h3>{{ a.headline }}</h3>
+        <p>{{ a.content }}</p>
+        <small>{{ a.date_posted }}</small>
+    </div>
 {% empty %}
-    <p>No announcements yet.</p>
+    <p>No announcements available.</p>
 {% endfor %}
 
-    <a href="/">Back to Home</a>
-</body>
-</html>
+{% endblock %}

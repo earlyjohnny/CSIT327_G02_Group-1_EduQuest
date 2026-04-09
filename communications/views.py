@@ -1,9 +1,13 @@
 from django.shortcuts import render
+from .models import Announcement, Feedback, Document
 
-# Create your views here.
-from django.shortcuts import render
-from .models import Announcement
-
-def announcements_list(request):
+def communications_home(request):
     announcements = Announcement.objects.all()
-    return render(request, 'announcements.html', {'announcements': announcements})
+    feedbacks = Feedback.objects.all()
+    documents = Document.objects.all()
+
+    return render(request, 'communications/home.html', {
+        'announcements': announcements,
+        'feedbacks': feedbacks,
+        'documents': documents,
+    })

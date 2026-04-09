@@ -13,6 +13,12 @@ class Feedback(models.Model):
 class Document(models.Model):
     file_name = models.CharField(max_length=255)
     file = models.FileField(upload_to='documents/')
-    file_type = models.CharField(max_length=50)
+    file_type = models.CharField(max_length=50, blank=True)
+    file_size = models.IntegerField(blank=True, null=True)
     upload_date = models.DateTimeField(auto_now_add=True)
-    file_size = models.IntegerField()
+
+    def save(self, *args, **kwargs):
+        if self.file:
+            self.file_type = self.file.name.split('.')[-1]  # gets extension
+            self.file_size = self.file.size  # gets file size in bytes
+        super().save(*args, **kwargs)
