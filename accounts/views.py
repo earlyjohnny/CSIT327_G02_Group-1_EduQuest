@@ -4,13 +4,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 
-class HomeView(View):
-    template_name = 'home.html'
+class IndexView(View):
+    template_name = 'index.html'
 
     def get(self, request):
         if not request.user.is_authenticated:
             return redirect('login')
-        if request.user.is_superuser or request.user.is_staff:
+        if request.user.is_superuser:
             return redirect('/admin/')
         return render(request, self.template_name)
 
@@ -29,7 +29,7 @@ class LoginView(View):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            if user.is_superuser or user.is_staff:
+            if user.is_superuser:
                 return redirect('/admin/')
             return redirect('index')
         else:
