@@ -23,4 +23,5 @@ urlpatterns = [
     path('', lambda request: redirect('login'), name='index'),
     path('accounts/', include('accounts.urls')),
     path('registrations/', include('registrations.urls')),
+    path('events/', include('events.urls')),
 ]
