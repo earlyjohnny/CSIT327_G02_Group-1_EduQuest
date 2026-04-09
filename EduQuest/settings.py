@@ -57,6 +57,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'EduQuest.urls'
+# Tells Django to use your custom User model instead of the default one
+AUTH_USER_MODEL = 'accounts.User'
 
 TEMPLATES = [
     {

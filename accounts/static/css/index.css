@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #f5f4f0;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #1a1a2e;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-family: 'DM Serif Display', serif;
+    color: #ffffff;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-user {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+}
+
+.btn-logout {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+
+.page-header {
+    margin-bottom: 40px;
+}
+
+.page-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    font-size: 15px;
+    color: #6b7280;
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.app-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    text-decoration: none;
+    border: 1px solid #e5e7eb;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.app-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: #1a1a2e;
+}
+
+.app-icon {
+    font-size: 28px;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+.app-info h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+}
+
+.app-info p {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.app-card--admin {
+    border-color: #fde68a;
+    background: #fffbeb;
+}
+
+.app-card--admin:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.12);
+}
+
+.app-card--admin .app-info h2 {
+    color: #92400e;
+}
