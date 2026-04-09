@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Announcements</h1>
+
+{% for a in announcements %}
+    <div class="card">
+        <h3>{{ a.headline }}</h3>
+        <p>{{ a.content }}</p>
+        <small>{{ a.date_posted }}</small>
+    </div>
+{% empty %}
+    <p>No announcements available.</p>
+{% endfor %}
+
+{% endblock %}

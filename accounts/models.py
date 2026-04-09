@@ -63,7 +63,8 @@ class Profile(models.Model):
 class Role(models.Model):
     role_id = models.AutoField(primary_key=True)
 
-    org = models.ForeignKey("organizations.Organization", on_delete=models.CASCADE, related_name="roles",)
+    org = models.ForeignKey("organizations.Organization", on_delete=models.CASCADE, related_name="roles", null=True,
+        blank=True)
     role_title = models.CharField(max_length=100)
     access_level = models.IntegerField(default=1)
     is_officer = models.BooleanField(default=False)
@@ -90,7 +91,13 @@ class Membership(models.Model):
         related_name="memberships",
     )
 
-    org = models.ForeignKey("organizations.Organization", on_delete=models.CASCADE, related_name="memberships",)
+    org = models.ForeignKey(
+        "organizations.Organization",
+        on_delete=models.CASCADE,
+        related_name="memberships",
+        null=True,
+        blank=True
+    )
     role = models.ForeignKey(
         Role,
         on_delete=models.SET_NULL,
