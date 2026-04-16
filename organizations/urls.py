@@ -4,4 +4,5 @@ from . import views
 app_name = 'organizations'
 urlpatterns = [
     path('', views.HomeView.as_view(), name='index'),
+    path('addNewOrganization', views.AddOrganizationView.as_view(), name='addNewOrganization'),
 ]
