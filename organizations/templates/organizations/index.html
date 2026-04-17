@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizations - EduQuest</title>
+</head>
+<body>
+    <h1>Organizations Overview</h1>
+
+    <h2>Categories</h2>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.category_name }} - {{ category.description }}</li>
+        {% empty %}
+            <li>No categories available.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Organizations</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Organization Name</th>
+                <th>Acronym</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Date Founded</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for org in organizations %}
+                <tr>
+                    <td>{{ org.org_name }}</td>
+                    <td>{{ org.acronym }}</td>
+                    <td>{{ org.cat.category_name }}</td>
+                    <td>{{ org.description }}</td>
+                    <td>{{ org.date_founded }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No organizations available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
