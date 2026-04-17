@@ -5,7 +5,7 @@ class Venue(models.Model):
     venue_id = models.AutoField(primary_key=True)
     venue_name = models.CharField(max_length=255)
     building_location = models.CharField(max_length=255)
-    max_occupancy = models.PositiveIntegerField()  # Use PositiveIntegerField instead of IntegerField
+
 
     def __str__(self):
         return self.venue_name
@@ -14,8 +14,7 @@ class Venue(models.Model):
 class Event(models.Model):
     event_id = models.AutoField(primary_key=True)
 
-    # Link to organizer (replace with actual model if you have an Organizer model)
-    # Example: settings.AUTH_USER_MODEL if it's a user
+
     org = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
