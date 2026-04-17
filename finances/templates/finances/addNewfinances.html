@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Budget Request</title>
+</head>
+<body>
+    <h1>Add New Budget Request</h1>
+
+    {% if saved %}
+        <p>Record saved successfully.</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+    <a href="{% url 'finances' %}">Back to Finances Index</a>
+</body>
+</html>

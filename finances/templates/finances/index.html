@@ -1,23 +1,13 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduQuest - Finances</title>
+    <title>Finances Index</title>
 </head>
 <body>
-    <nav>
-        <span>EduQuest</span>
-        <div>
-            <a href="{% url 'index' %}">Back to Home</a>
-            <a href="{% url 'logout' %}">Log Out</a>
-        </div>
-    </nav>
-
-    <main>
-        <h1>Welcome to the Finances Page</h1>
-        <p>Budget requests and equipment tracking features are coming soon.</p>
-    </main>
+    <h1>Finances Index Page</h1>
+    <p>This is the basic finances index page.</p>
+    <a href="{% url 'add_new_budget_request' %}">Add New Budget Request</a>
 </body>
 </html>
