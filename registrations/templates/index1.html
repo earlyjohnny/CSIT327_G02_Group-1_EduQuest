@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduQuest - Registrations</title>
+    <link rel="stylesheet" href="{% static 'css/registrations.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <span class="nav-brand">EduQuest</span>
+        <div class="nav-right">
+            <a href="{% url 'index' %}" class="btn-back">← Back to Home</a>
+            <a href="{% url 'logout' %}" class="btn-logout">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Registrations</h1>
+            <a href="{% url 'add_registration' %}" class="btn-add">+ Add New Registration</a>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Student</th>
+                        <th>Event</th>
+                        <th>Confirmation Code</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reg in registrations %}
+                    <tr>
+                        <td>{{ reg.reg_id }}</td>
+                        <td>{{ reg.user.email }}</td>
+                        <td>{{ reg.event.title|default:"N/A" }}</td>
+                        <td><code>{{ reg.confirmation_code }}</code></td>
+                        <td>{{ reg.timestamp|date:"M d, Y H:i" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="empty">No registrations found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
