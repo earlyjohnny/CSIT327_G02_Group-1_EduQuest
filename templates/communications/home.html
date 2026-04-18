@@ -4,6 +4,12 @@
 <h1>Communications</h1>
 <p class="subtitle">Manage announcements, feedback, and documents</p>
 
+<div style="margin-bottom: 20px;">
+    <a href="/communications/addNewAnnouncement/" class="btn">
+        + Add Announcement
+    </a>
+</div>
+
 <div class="grid">
 
     <!-- Announcements -->
@@ -21,37 +27,37 @@
     </div>
 
     <!-- Feedback -->
-<div class="card">
-    <h3>💬 Feedback</h3>
+    <div class="card">
+        <h3>💬 Feedback</h3>
 
-    {% for f in feedbacks %}
-        <div class="item">
-            <strong>⭐ {{ f.rating }}/5</strong>
-            <p>{{ f.comments }}</p>
-            <small>{{ f.submission_date }}</small>
-        </div>
-    {% empty %}
-        <p>No feedback yet.</p>
-    {% endfor %}
-</div>
+        {% for f in feedbacks %}
+            <div class="item">
+                <strong>⭐ {{ f.rating }}/5</strong>
+                <p>{{ f.comments }}</p>
+                <small>{{ f.submission_date }}</small>
+            </div>
+        {% empty %}
+            <p>No feedback yet.</p>
+        {% endfor %}
+    </div>
 
     <!-- Documents -->
-<div class="card">
-    <h3>📄 Documents</h3>
+    <div class="card">
+        <h3>📄 Documents</h3>
 
-    {% for d in documents %}
-        <div class="item">
-            <strong>{{ d.file_name }}</strong>
-            <p>Type: {{ d.file_type }}</p>
+        {% for d in documents %}
+            <div class="item">
+                <strong>{{ d.file_name }}</strong>
+                <p>Type: {{ d.file_type }}</p>
 
-            <a href="{{ d.file.url }}" target="_blank">
-                View / Download
-            </a>
-        </div>
-    {% empty %}
-        <p>No documents yet.</p>
-    {% endfor %}
-</div>
+                <a href="{{ d.file.url }}" target="_blank">
+                    View / Download
+                </a>
+            </div>
+        {% empty %}
+            <p>No documents yet.</p>
+        {% endfor %}
+    </div>
 
 </div>
 
