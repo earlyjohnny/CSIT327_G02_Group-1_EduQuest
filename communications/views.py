@@ -1,13 +1,17 @@
-from django.shortcuts import render
-from .models import Announcement, Feedback, Document
+from django.shortcuts import render, redirect
+from .models import Announcement
+from .forms import AnnouncementForm
 
-def communications_home(request):
-    announcements = Announcement.objects.all()
-    feedbacks = Feedback.objects.all()
-    documents = Document.objects.all()
+def home(request):
+    return render(request, 'communications/index.html')
 
-    return render(request, 'communications/home.html', {
-        'announcements': announcements,
-        'feedbacks': feedbacks,
-        'documents': documents,
-    })
+def add_announcement(request):
+    form = AnnouncementForm()
+
+    if request.method == 'POST':
+        form = AnnouncementForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('communications_home')
+
+    return render(request, 'communications/addNewAnnouncement.html', {'form': form})
