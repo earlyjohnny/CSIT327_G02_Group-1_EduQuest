@@ -19,14 +19,14 @@
     <div class="container">
         <div class="form-card">
             <h1>Add New Registration</h1>
-            <form method="POST">
+            <form method="POST" action="{% url 'add_registration' %}">
                 {% csrf_token %}
                 {% for field in form %}
                 <div class="form-group">
                     <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                     {{ field }}
                     {% if field.errors %}
-                    <div class="field-error" style="color: red; font-size: 0.8rem;">
+                    <div class="field-error">
                         {{ field.errors }}
                     </div>
                     {% endif %}
