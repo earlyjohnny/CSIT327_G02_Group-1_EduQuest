@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrations - Home</title>
+    <link rel="stylesheet" href="{% static 'css/registrations.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <span class="nav-brand">EduQuest</span>
+        <div class="nav-right">
+            <a href="{% url 'index' %}" class="btn-back">← Back to Main</a>
+            <a href="{% url 'registrations_logout' %}" class="btn-logout">Log Off</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Registrations</h1>
+            <p>Welcome, {{ request.user.email }}!</p>
+        </div>
+
+        <div class="nav-cards">
+            <a href="{% url 'registrations_editprofile' %}" class="nav-card">
+                <div class="nav-card-icon">👤</div>
+                <div class="nav-card-info">
+                    <h2>Edit Profile</h2>
+                    <p>Update your account details</p>
+                </div>
+            </a>
+
+            <a href="{% url 'registrations_index' %}" class="nav-card">
+                <div class="nav-card-icon">📋</div>
+                <div class="nav-card-info">
+                    <h2>Registrations</h2>
+                    <p>View and manage event registrations</p>
+                </div>
+            </a>
+
+            <a href="{% url 'attendance_index' %}" class="nav-card">
+                <div class="nav-card-icon">✅</div>
+                <div class="nav-card-info">
+                    <h2>Attendance</h2>
+                    <p>View and manage attendance records</p>
+                </div>
+            </a>
+
+            <a href="{% url 'registrations_logout' %}" class="nav-card nav-card--logout">
+                <div class="nav-card-icon">🚪</div>
+                <div class="nav-card-info">
+                    <h2>Log Off</h2>
+                    <p>Sign out of your account</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

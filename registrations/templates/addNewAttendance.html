@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduQuest - Add New Attendance</title>
+    <link rel="stylesheet" href="{% static 'css/registrations.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <span class="nav-brand">EduQuest</span>
+        <div class="nav-right">
+            <a href="{% url 'attendance_index' %}" class="btn-back">← Back to Attendance</a>
+            <a href="{% url 'registrations_logout' %}" class="btn-logout">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-card">
+            <h1>Add New Attendance</h1>
+            <form method="POST" action="{% url 'add_attendance' %}">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                    <div class="field-error">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <div class="form-actions">
+                    <a href="{% url 'attendance_index' %}" class="btn-cancel">Cancel</a>
+                    <button type="submit" class="btn-submit">Save Attendance</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
