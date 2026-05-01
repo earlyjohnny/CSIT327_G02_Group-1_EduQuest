@@ -27,3 +27,19 @@ class Organization(models.Model):
 
     def __str__(self):
         return self.org_name
+
+
+class User(models.Model):
+    user_id = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=100, unique=True)
+    password = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100, null=True, blank=True)
+    middle_name = models.CharField(max_length=100, null=True, blank=True)
+    type = models.IntegerField(default=1)  # 1 = student, 0 = teacher
+
+    class Meta:
+        db_table = 'user'
+
+    def __str__(self):
+        return self.username

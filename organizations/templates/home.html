@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - EduQuest</title>
+</head>
+<body>
+    <h2>Welcome!</h2>
+    <nav>
+        <a href="{% url 'organizations:edit_profile' %}">Edit Profile</a> |
+        <a href="{% url 'organizations:add_record' %}">Add New Record</a> |
+        <a href="{% url 'organizations:add_category' %}">Add Category</a> |
+        <a href="{% url 'organizations:logoff' %}">Log Off</a>
+    </nav>
+</body>
+</html>

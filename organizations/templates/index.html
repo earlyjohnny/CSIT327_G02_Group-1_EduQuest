@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EduQuest</title>
+</head>
+
+<body>
+    <h2>EduQuest Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="txt_username" placeholder="Username"><br><br>
+        <input type="password" name="txt_password" placeholder="Password"><br><br>
+        <button type="submit">Login</button>
+        <p style="color: red;">{{ msg }}</p>
+    </form>
+    <p><a href="{% url 'organizations:register' %}">Register</a></p>
+</body>
+
+</html>

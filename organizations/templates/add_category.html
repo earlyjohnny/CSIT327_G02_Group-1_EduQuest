@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category - EduQuest</title>
+</head>
+
+<body>
+    <h2>Add New Category</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <br>
+        <button type="submit">Save Category</button>
+    </form>
+    {% if success %}
+    <p style="color: green;">{{ success }}</p>
+    {% endif %}
+    <br>
+    <a href="{% url 'organizations:home_page' %}">Back to Home</a>
+</body>
+
+</html>
