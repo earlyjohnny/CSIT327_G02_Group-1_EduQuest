@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Login</h1>
+<p class="subtitle">Sign in to continue to Communications.</p>
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color:#b00020; font-weight:600;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<form method="post" style="max-width:420px;">
+    {% csrf_token %}
+    <div style="margin-bottom:12px;">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required style="display:block; width:100%; padding:10px; margin-top:4px;">
+    </div>
+
+    <div style="margin-bottom:16px;">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required style="display:block; width:100%; padding:10px; margin-top:4px;">
+    </div>
+
+    <button type="submit" class="btn">Log In</button>
+</form>
+
+<div style="margin-top:14px;">
+    <a href="{% url 'communications_register' %}" class="btn">Register</a>
+</div>
+
+{% endblock %}

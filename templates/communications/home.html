@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Communications</h1>
-<p class="subtitle">Manage announcements, feedback, and documents</p>
+<h1>Communications Home</h1>
+<p class="subtitle">Welcome, {{ request.user.email }}.</p>
 
-<div style="margin-bottom: 20px;">
-    <a href="/communications/addNewAnnouncement/" class="btn">
-        + Add Announcement
-    </a>
+<div style="display:flex; gap:10px; margin-bottom: 20px;">
+    <a href="{% url 'communications_edit_profile' %}" class="btn">Edit Profile</a>
+    <a href="{% url 'add_announcement' %}" class="btn">Add Announcement</a>
+    <a href="{% url 'communications_logout' %}" class="btn">Log Off</a>
 </div>
 
 <div class="grid">

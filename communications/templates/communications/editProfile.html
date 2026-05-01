@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Edit Profile</h1>
+<p class="subtitle">Update your profile information.</p>
+
+<div style="display:flex; gap:10px; margin-bottom: 20px;">
+    <a href="{% url 'communications_home' %}" class="btn">Home</a>
+    <a href="{% url 'add_announcement' %}" class="btn">Add Announcement</a>
+    <a href="{% url 'communications_logout' %}" class="btn">Log Off</a>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color:{% if message.tags == 'success' %}#0a7a2f{% else %}#b00020{% endif %}; font-weight:600;">
+            {{ message }}
+        </p>
+    {% endfor %}
+{% endif %}
+
+<form method="post" style="max-width:520px;">
+    {% csrf_token %}
+    <div style="margin-bottom:12px;">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="{{ request.user.email }}" required style="display:block; width:100%; padding:10px; margin-top:4px;">
+    </div>
+
+    <div style="margin-bottom:12px;">
+        <label for="student_num">Student Number</label>
+        <input id="student_num" name="student_num" type="text" value="{% if profile %}{{ profile.student_num }}{% endif %}" required style="display:block; width:100%; padding:10px; margin-top:4px;">
+    </div>
+
+    <div style="margin-bottom:12px;">
+        <label for="first_name">First Name</label>
+        <input id="first_name" name="first_name" type="text" value="{% if profile %}{{ profile.first_name }}{% endif %}" required style="display:block; width:100%; padding:10px; margin-top:4px;">
+    </div>
+
+    <div style="margin-bottom:12px;">
+        <label for="last_name">Last Name</label>
+        <input id="last_name" name="last_name" type="text" value="{% if profile %}{{ profile.last_name }}{% endif %}" required style="display:block; width:100%; padding:10px; margin-top:4px;">
+    </div>
+
+    <div style="margin-bottom:12px;">
+        <label for="course">Course</label>
+        <input id="course" name="course" type="text" value="{% if profile %}{{ profile.course }}{% endif %}" style="display:block; width:100%; padding:10px; margin-top:4px;">
+    </div>
+
+    <div style="margin-bottom:16px;">
+        <label for="year_level">Year Level</label>
+        <input id="year_level" name="year_level" type="text" value="{% if profile %}{{ profile.year_level }}{% endif %}" style="display:block; width:100%; padding:10px; margin-top:4px;">
+    </div>
+
+    <button type="submit" class="btn">Save Profile</button>
+</form>
+
+{% endblock %}

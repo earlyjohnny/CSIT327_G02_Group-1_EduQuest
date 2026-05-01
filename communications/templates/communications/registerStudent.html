@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Add New Record</h1>
+<p class="subtitle">This page is available only for logged-in users.</p>
+
+<div style="display:flex; gap:10px; margin-bottom: 20px;">
+    <a href="{% url 'communications_home' %}" class="btn">Home</a>
+    <a href="{% url 'communications_edit_profile' %}" class="btn">Edit Profile</a>
+    <a href="{% url 'communications_logout' %}" class="btn">Log Off</a>
+</div>
+
+{% endblock %}
