@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile - EduQuest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 { font-size: 2rem; }
+        .header-user { font-size: 0.95rem; opacity: 0.9; }
+
+        nav {
+            background: #388E3C;
+            padding: 0 40px;
+            display: flex;
+            gap: 4px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-bottom: 3px solid transparent;
+            transition: background 0.2s, border-color 0.2s;
+            display: inline-block;
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(255,255,255,0.12);
+            border-bottom-color: white;
+        }
+
+        nav a.logoff { margin-left: auto; color: #FFCDD2; }
+        nav a.logoff:hover { background: rgba(255,0,0,0.15); border-bottom-color: #FFCDD2; }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .page-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            padding: 36px;
+        }
+
+        .page-card h2 {
+            color: #2E7D32;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #E8F5E9;
+            padding-bottom: 14px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            color: #444;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus { border-color: #4CAF50; }
+
+        .hint {
+            font-size: 0.82rem;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .btn-save {
+            padding: 12px 32px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-save:hover { background: #388E3C; }
+
+        .btn-back {
+            padding: 12px 24px;
+            background: #f5f5f5;
+            color: #555;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 12px;
+            transition: background 0.2s;
+        }
+
+        .btn-back:hover { background: #e0e0e0; }
+
+        .success-message {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border: 1px solid #A5D6A7;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #e0e0e0;
+            border-top: 1px solid #ccc;
+            color: #555;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>EduQuest</h1>
+    <span class="header-user">Welcome, <strong>{{ username }}</strong></span>
+</header>
+
+<nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'edit_profile' %}" class="active">Edit Profile</a>
+    <a href="{% url 'add_record' %}">Add New Record</a>
+    <a href="{% url 'event_list' %}">Events</a>
+    <a href="{% url 'logout' %}" class="logoff">Log Off</a>
+</nav>
+
+<div class="container">
+    <div class="page-card">
+        <h2>Edit Profile</h2>
+
+        {% if saved %}
+            <div class="success-message">
+                Profile updated successfully! Your name has been updated to <strong>{{ username }}</strong>.
+            </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'edit_profile' %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name"
+                       value="{{ first_name }}" placeholder="Enter your first name">
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name"
+                       value="{{ last_name }}" placeholder="Enter your last name">
+            </div>
+
+            <div class="form-group">
+                <label for="new_password">New Password</label>
+                <input type="password" id="new_password" name="new_password"
+                       placeholder="Leave blank to keep current password">
+                <p class="hint">Only fill this in if you want to change your password.</p>
+            </div>
+
+            <div style="margin-top: 28px;">
+                <a href="{% url 'home' %}" class="btn-back">Back</a>
+                <button type="submit" class="btn-save">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 EduQuest. All rights reserved.
+</footer>
+
+</body>
+</html>

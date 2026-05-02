@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - EduQuest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+        }
+
+        .header-user {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #388E3C;
+            padding: 0 40px;
+            display: flex;
+            gap: 4px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-bottom: 3px solid transparent;
+            transition: background 0.2s, border-color 0.2s;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.12);
+            border-bottom-color: white;
+        }
+
+        nav a.logoff {
+            margin-left: auto;
+            color: #FFCDD2;
+        }
+
+        nav a.logoff:hover {
+            background: rgba(255,0,0,0.15);
+            border-bottom-color: #FFCDD2;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .welcome-banner {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            padding: 30px 36px;
+            margin-bottom: 32px;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .welcome-banner h2 {
+            color: #2E7D32;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .welcome-banner p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .action-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .action-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            padding: 28px 24px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+            border-top: 4px solid #4CAF50;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .action-card .icon {
+            font-size: 2.4rem;
+            margin-bottom: 14px;
+        }
+
+        .action-card h3 {
+            color: #333;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .action-card p {
+            color: #777;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .action-card.danger {
+            border-top-color: #E53935;
+        }
+
+        .action-card.danger h3 {
+            color: #C62828;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #e0e0e0;
+            border-top: 1px solid #ccc;
+            color: #555;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>EduQuest</h1>
+    <span class="header-user">Welcome, <strong>{{ username }}</strong></span>
+</header>
+
+<nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'edit_profile' %}">Edit Profile</a>
+    <a href="{% url 'add_record' %}">Add New Record</a>
+    <a href="{% url 'event_list' %}">Events</a>
+    <a href="{% url 'logout' %}" class="logoff">Log Off</a>
+</nav>
+
+<div class="container">
+
+    <div class="welcome-banner">
+        <h2>Hello, {{ username }}!</h2>
+        <p>You are logged in to the EduQuest Event Management System. Use the navigation above or the quick-access cards below to get started.</p>
+    </div>
+
+    <div class="action-cards">
+        <a href="{% url 'edit_profile' %}" class="action-card">
+            <div class="icon">&#9998;</div>
+            <h3>Edit Profile</h3>
+            <p>Update your personal information and account settings.</p>
+        </a>
+
+        <a href="{% url 'add_record' %}" class="action-card">
+            <div class="icon">&#43;</div>
+            <h3>Add New Record</h3>
+            <p>Create a new event record in the system.</p>
+        </a>
+
+        <a href="{% url 'event_list' %}" class="action-card">
+            <div class="icon">&#128197;</div>
+            <h3>View Events</h3>
+            <p>Browse all upcoming events and activities.</p>
+        </a>
+
+        <a href="{% url 'logout' %}" class="action-card danger">
+            <div class="icon">&#128682;</div>
+            <h3>Log Off</h3>
+            <p>Sign out of your current session securely.</p>
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2026 EduQuest. All rights reserved.
+</footer>
+
+</body>
+</html>

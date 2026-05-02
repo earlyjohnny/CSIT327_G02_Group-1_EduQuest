@@ -1,10 +1,16 @@
 from django.urls import path
 from . import views
 
-app_name = 'events'
-
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('events/addNewEvent/', views.add_new_event, name='add_new_event'),
-    path('events/addNewVenue/', views.add_new_venue, name='add_new_venue'),
+    # Authentication
+    path('login/',    views.login_view,        name='login'),
+    path('logout/',   views.logout_view,       name='logout'),
+
+    # Session-protected pages
+    path('home/',     views.home_view,         name='home'),
+    path('profile/',  views.edit_profile_view, name='edit_profile'),
+    path('record/',   views.add_record_view,   name='add_record'),
+
+    # Public event list  ← this now handles events/
+    path('',          views.event_list,        name='event_list'),
 ]
