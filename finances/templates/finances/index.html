@@ -3,11 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finances Index</title>
+    <title>Finances - Home</title>
 </head>
 <body>
-    <h1>Finances Index Page</h1>
-    <p>This is the basic finances index page.</p>
-    <a href="{% url 'add_new_budget_request' %}">Add New Budget Request</a>
+    <nav>
+        <span>Finances</span>
+        <div>
+            <span>{{ request.user.email }}</span>
+            <a href="{% url 'finances_logout' %}">Log Off</a>
+        </div>
+    </nav>
+
+    <div>
+        <div>
+            <h1>Welcome back, {{ request.user.email }}!</h1>
+            <p>Manage your finances below.</p>
+        </div>
+
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+            <div>{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div>
+            <a href="{% url 'finances_edit_profile' %}">
+                <div>
+                    <h2>Edit Profile</h2>
+                    <p>Update your personal information</p>
+                </div>
+            </a>
+
+            <a href="{% url 'add_new_budget_request' %}">
+                <div>
+                    <h2>Add New Record</h2>
+                    <p>Create a new budget request</p>
+                </div>
+            </a>
+
+            <a href="{% url 'finances_logout' %}">
+                <div>
+                    <h2>Log Off</h2>
+                    <p>Sign out of your session</p>
+                </div>
+            </a>
+        </div>
+    </div>
 </body>
 </html>

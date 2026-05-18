@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import BudgetRequest, Equipment, EventEquipment
 
-# Register your models here.
+admin.site.register(BudgetRequest)
+admin.site.register(Equipment)
+admin.site.register(EventEquipment)
