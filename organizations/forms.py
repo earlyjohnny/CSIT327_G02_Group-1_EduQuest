@@ -3,6 +3,10 @@ from .models import Organization, User, Category
 
 
 class OrganizationForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['cat'].empty_label = "Select a category"
+
     class Meta:
         model = Organization
         fields = ['cat', 'org_name', 'acronym', 'description', 'date_founded']

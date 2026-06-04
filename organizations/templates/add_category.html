@@ -1,27 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Category - EduQuest</title>
-</head>
+{% block title %}Add Category - EduQuest{% endblock %}
 
-<body>
-    <h2>Add New Category</h2>
+{% block content %}
+<div class="breadcrumbs">
+    <a href="{% url 'organizations:home_page' %}">Dashboard</a>
+    <span class="separator">&gt;</span>
+    <span class="current">Add category</span>
+</div>
+
+<div class="page-header">
+    <h1 class="page-title">Add New Category</h1>
+    <span class="pill-badge">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+        Category
+    </span>
+</div>
+<p class="page-subtitle">Fill in the details below to create a new organization classification category.</p>
+
+{% if success %}
+<div class="custom-alert custom-alert-success" style="max-width: 720px;">
+    <svg style="width: 1.25rem; height: 1.25rem; flex-shrink: 0;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    <span>{{ success }}</span>
+</div>
+{% endif %}
+
+<div class="custom-card">
     <form method="POST">
         {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <br>
-        <button type="submit">Save Category</button>
-    </form>
-    {% if success %}
-    <p style="color: green;">{{ success }}</p>
-    {% endif %}
-    <br>
-    <a href="{% url 'organizations:home_page' %}">Back to Home</a>
-</body>
+        
+        <!-- Category Name Group -->
+        <div class="form-group">
+            <label for="id_category_name">Category name <span class="required-star">*</span></label>
+            <input type="text" name="category_name" id="id_category_name" value="{{ form.category_name.value|default_if_none:'' }}" placeholder="e.g. Academic" required>
+            {% if form.category_name.errors %}
+                <div style="color: var(--error); font-size: 0.825rem; margin-top: 0.35rem;">{{ form.category_name.errors|striptags }}</div>
+            {% endif %}
+        </div>
 
-</html>
+        <!-- Description Group -->
+        <div class="form-group">
+            <label for="id_description">Description</label>
+            <textarea name="description" id="id_description" rows="4" placeholder="Brief description of the category...">{{ form.description.value|default_if_none:'' }}</textarea>
+            {% if form.description.errors %}
+                <div style="color: var(--error); font-size: 0.825rem; margin-top: 0.35rem;">{{ form.description.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Action buttons -->
+        <div class="form-actions">
+            <a href="{% url 'organizations:home_page' %}" class="btn-outline">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to dashboard
+            </a>
+            <button type="submit" class="btn-outline">
+                <!-- Save/Add icon -->
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Save category
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Scroll indicator -->
+<div class="scroll-indicator">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-6l-7 7-7-7"></path>
+    </svg>
+</div>
+{% endblock %}

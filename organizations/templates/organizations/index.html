@@ -1,25 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organizations - EduQuest</title>
-</head>
-<body>
-    <h1>Organizations Overview</h1>
+{% extends 'base.html' %}
 
-    <h2>Categories</h2>
-    <ul>
-        {% for category in categories %}
-            <li>{{ category.category_name }} - {{ category.description }}</li>
-        {% empty %}
-            <li>No categories available.</li>
-        {% endfor %}
-    </ul>
+{% block title %}Organizations Directory - EduQuest{% endblock %}
 
-    <h2>Organizations</h2>
-    <p><a href="{% url 'organizations:addNewOrganization' %}">Add New Organization</a></p>
-    <table border="1">
+{% block content %}
+<div class="breadcrumbs">
+    <a href="{% url 'organizations:home_page' %}">Dashboard</a>
+    <span class="separator">&gt;</span>
+    <span class="current">Organizations</span>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+    <div>
+        <div class="page-header">
+            <h1 class="page-title">Organizations Directory</h1>
+            <span class="pill-badge">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+                Directory
+            </span>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 0;">Browse and manage registered categories and organizations.</p>
+    </div>
+    <div style="display: flex; gap: 0.75rem;">
+        <a href="{% url 'organizations:add_category' %}" class="btn-outline">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Add Category
+        </a>
+        <a href="{% url 'organizations:addNewOrganization' %}" class="btn-outline" style="border-color: var(--primary); color: #ffffff;">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+            </svg>
+            Add Organization
+        </a>
+    </div>
+</div>
+
+<h2 style="font-family: var(--font-heading); margin-bottom: 1.25rem; font-size: 1.5rem; border-bottom: 1px solid var(--border-card); padding-bottom: 0.5rem; color: #ffffff;">Categories</h2>
+<div class="category-grid">
+    {% for category in categories %}
+        <div class="category-card">
+            <div class="category-card-name">{{ category.category_name }}</div>
+            <div class="category-card-desc">{{ category.description }}</div>
+        </div>
+    {% empty %}
+        <div style="color: var(--text-muted); font-style: italic; grid-column: 1 / -1; padding: 1.5rem; background-color: var(--bg-card); border-radius: 8px; border: 1px solid var(--border-card);">
+            No categories available. Add one to get started.
+        </div>
+    {% endfor %}
+</div>
+
+<h2 style="font-family: var(--font-heading); margin-bottom: 1.25rem; font-size: 1.5rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border-card); padding-bottom: 0.5rem; color: #ffffff;">Organizations</h2>
+<div class="table-wrapper">
+    <table class="content-table">
         <thead>
             <tr>
                 <th>Organization Name</th>
@@ -32,18 +67,27 @@
         <tbody>
             {% for org in organizations %}
                 <tr>
-                    <td>{{ org.org_name }}</td>
-                    <td>{{ org.acronym }}</td>
-                    <td>{{ org.cat.category_name }}</td>
+                    <td style="font-weight: 600; color: #ffffff;">{{ org.org_name }}</td>
+                    <td><span class="custom-badge">{{ org.acronym }}</span></td>
+                    <td><span class="custom-badge custom-badge-blue">{{ org.cat.category_name }}</span></td>
                     <td>{{ org.description }}</td>
-                    <td>{{ org.date_founded }}</td>
+                    <td style="white-space: nowrap;">{{ org.date_founded|date:"M d, Y" }}</td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="5">No organizations available.</td>
+                    <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 4rem 0;">
+                        No organizations registered in directory.
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+</div>
+
+<!-- Scroll indicator -->
+<div class="scroll-indicator" style="margin-top: 3rem;">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-6l-7 7-7-7"></path>
+    </svg>
+</div>
+{% endblock %}
