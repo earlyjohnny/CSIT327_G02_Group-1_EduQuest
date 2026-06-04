@@ -19,6 +19,6 @@ class Document(models.Model):
 
     def save(self, *args, **kwargs):
         if self.file:
-            self.file_type = self.file.name.split('.')[-1]  # gets extension
-            self.file_size = self.file.size  # gets file size in bytes
+            self.file_type = self.file.name.split('.')[-1]
+            self.file_size = self.file.size
         super().save(*args, **kwargs)

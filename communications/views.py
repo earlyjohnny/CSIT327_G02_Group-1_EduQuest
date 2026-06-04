@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from accounts.models import Profile
 from .models import Announcement, Feedback, Document
-from .forms import AnnouncementForm
+from .forms import AnnouncementForm, FeedbackForm, DocumentForm
 
 
 def root_redirect(request):
@@ -92,6 +92,46 @@ def add_announcement(request):
     return render(request, 'communications/addNewAnnouncement.html', {
         'form': form
     })
+
+@login_required(login_url='communications_login')
+def add_feedback(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('communications_home')
+
+    else:
+        form = FeedbackForm()
+
+    return render(
+        request,
+        'communications/addFeedback.html',
+        {'form': form}
+    )
+
+
+@login_required(login_url='communications_login')
+def add_document(request):
+    if request.method == 'POST':
+        form = DocumentForm(
+            request.POST,
+            request.FILES
+        )
+
+        if form.is_valid():
+            form.save()
+            return redirect('communications_home')
+
+    else:
+        form = DocumentForm()
+
+    return render(
+        request,
+        'communications/addDocument.html',
+        {'form': form}
+    )
 
 
 @login_required(login_url='communications_login')

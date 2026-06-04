@@ -4,10 +4,28 @@
 <h1>Communications Home</h1>
 <p class="subtitle">Welcome, {{ request.user.email }}.</p>
 
-<div style="display:flex; gap:10px; margin-bottom: 20px;">
-    <a href="{% url 'communications_edit_profile' %}" class="btn">Edit Profile</a>
-    <a href="{% url 'add_announcement' %}" class="btn">Add Announcement</a>
-    <a href="{% url 'communications_logout' %}" class="btn">Log Off</a>
+<div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
+
+    <a href="{% url 'communications_edit_profile' %}" class="btn">
+        Edit Profile
+    </a>
+
+    <a href="{% url 'add_announcement' %}" class="btn">
+        Add Announcement
+    </a>
+
+    <a href="{% url 'add_feedback' %}" class="btn">
+        Add Feedback
+    </a>
+
+    <a href="{% url 'add_document' %}" class="btn">
+        Upload Document
+    </a>
+
+    <a href="{% url 'communications_logout' %}" class="btn">
+        Log Off
+    </a>
+
 </div>
 
 <div class="grid">
@@ -20,6 +38,7 @@
             <div class="item">
                 <strong>{{ a.headline }}</strong>
                 <p>{{ a.content }}</p>
+                <small>{{ a.date_posted }}</small>
             </div>
         {% empty %}
             <p>No announcements yet.</p>
@@ -49,6 +68,7 @@
             <div class="item">
                 <strong>{{ d.file_name }}</strong>
                 <p>Type: {{ d.file_type }}</p>
+                <p>Size: {{ d.file_size }} bytes</p>
 
                 <a href="{{ d.file.url }}" target="_blank">
                     View / Download

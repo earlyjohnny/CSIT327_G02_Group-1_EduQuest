@@ -8,6 +8,9 @@ urlpatterns = [
     path('logout/', views.logout_view, name='communications_logout'),
     path('home/', views.home, name='communications_home'),
     path('edit-profile/', views.edit_profile, name='communications_edit_profile'),
-    path('addNewAnnouncement/', views.add_announcement, name='add_announcement'),
     path('index/', views.index, name='communications_index'),
-]
+
+    path('addNewAnnouncement/', views.add_announcement, name='add_announcement'),
+    path('addFeedback/',views.add_feedback,name='add_feedback'),
+    path('addDocument/',views.add_document,name='add_document'),
+    ]
