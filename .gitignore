@@ -14,3 +14,4 @@ __pycache__/
 .vscode/
 *.swp
 *.swo
+db.sqlite3 

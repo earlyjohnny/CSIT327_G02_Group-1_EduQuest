@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import communications_home
+from . import views
 
 urlpatterns = [
-    path('', communications_home, name='communications_home'),
+    path('', views.home, name='communications_home'),
+    path('addNewAnnouncement/', views.add_announcement, name='add_announcement'),
+    path('index/', views.index, name='communications_index'),
 ]
